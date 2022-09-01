@@ -1,4 +1,5 @@
 clc; close all; clear
+% This code does not make sense. I will delete it in the end.
 
 lambda      = 1;                  % central wavelength (microns)
 n_imm       = 1; %1.367;                % refractive index of immersion media
@@ -6,7 +7,7 @@ n_o         = 2;                 % RI of the object
 k0=(2*pi)/lambda;
 k=k0*n_imm;
 
-ps          = .05;                 % pixel size (x,y,z) in object space (microns)
+ps          = .5;                 % pixel size (x,y,z) in object space (microns)
 N           = 2^6;                  % lateral pixel dimension 
 x           = ps*(-N/2:N/2-1);      % 1D axis in x
 y=x;
@@ -22,7 +23,7 @@ L = 10;
 Nz=L/ps;
 z=ps*(0.5:1:Nz-0.5);
 
-D = 3;
+D = 1;
 Noz=D/ps;
 
 RI = n_imm*ones(N,N,Nz);
@@ -41,9 +42,9 @@ ER=ER(:,:,2:end);
 
 figure
 subplot(4,2,1)
-imagesc(z,x,squeeze(V(:,32,:)))
+imagesc(z,x,squeeze(RI(:,32,:)))
 colorbar
-title('V')
+title('RI')
 subplot(4,2,3)
 imagesc(z,x,squeeze(angle(EB(:,32,:))))
 colorbar
